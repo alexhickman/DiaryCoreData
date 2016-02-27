@@ -18,8 +18,9 @@
 		882936191C818D020099FEA8 /* DiaryCoreDataUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 882936181C818D020099FEA8 /* DiaryCoreDataUITests.m */; };
 		882936281C818DA60099FEA8 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 882936271C818DA60099FEA8 /* CoreDataStack.m */; };
 		8829362B1C818E700099FEA8 /* NewEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8829362A1C818E700099FEA8 /* NewEntryViewController.m */; };
-		882936301C818FBF0099FEA8 /* DiaryEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8829362D1C818FBF0099FEA8 /* DiaryEntry+CoreDataProperties.m */; };
-		882936311C818FBF0099FEA8 /* DiaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8829362F1C818FBF0099FEA8 /* DiaryEntry.m */; };
+		882936341C8192F90099FEA8 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882936331C8192F90099FEA8 /* TableViewController.m */; };
+		882936391C8197FE0099FEA8 /* DiaryEntry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 882936361C8197FE0099FEA8 /* DiaryEntry+CoreDataProperties.m */; };
+		8829363A1C8197FE0099FEA8 /* DiaryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 882936381C8197FE0099FEA8 /* DiaryEntry.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,10 +62,12 @@
 		882936271C818DA60099FEA8 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataStack.m; path = ../CoreDataStack.m; sourceTree = "<group>"; };
 		882936291C818E700099FEA8 /* NewEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEntryViewController.h; sourceTree = "<group>"; };
 		8829362A1C818E700099FEA8 /* NewEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEntryViewController.m; sourceTree = "<group>"; };
-		8829362C1C818FBF0099FEA8 /* DiaryEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DiaryEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
-		8829362D1C818FBF0099FEA8 /* DiaryEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DiaryEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
-		8829362E1C818FBF0099FEA8 /* DiaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryEntry.h; sourceTree = "<group>"; };
-		8829362F1C818FBF0099FEA8 /* DiaryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryEntry.m; sourceTree = "<group>"; };
+		882936321C8192F90099FEA8 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		882936331C8192F90099FEA8 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		882936351C8197FE0099FEA8 /* DiaryEntry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DiaryEntry+CoreDataProperties.h"; sourceTree = "<group>"; };
+		882936361C8197FE0099FEA8 /* DiaryEntry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DiaryEntry+CoreDataProperties.m"; sourceTree = "<group>"; };
+		882936371C8197FE0099FEA8 /* DiaryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryEntry.h; sourceTree = "<group>"; };
+		882936381C8197FE0099FEA8 /* DiaryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryEntry.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +98,10 @@
 		882935E41C818D020099FEA8 = {
 			isa = PBXGroup;
 			children = (
-				8829362C1C818FBF0099FEA8 /* DiaryEntry+CoreDataProperties.h */,
-				8829362D1C818FBF0099FEA8 /* DiaryEntry+CoreDataProperties.m */,
-				8829362E1C818FBF0099FEA8 /* DiaryEntry.h */,
-				8829362F1C818FBF0099FEA8 /* DiaryEntry.m */,
+				882936351C8197FE0099FEA8 /* DiaryEntry+CoreDataProperties.h */,
+				882936361C8197FE0099FEA8 /* DiaryEntry+CoreDataProperties.m */,
+				882936371C8197FE0099FEA8 /* DiaryEntry.h */,
+				882936381C8197FE0099FEA8 /* DiaryEntry.m */,
 				882935EF1C818D020099FEA8 /* DiaryCoreData */,
 				8829360C1C818D020099FEA8 /* DiaryCoreDataTests */,
 				882936171C818D020099FEA8 /* DiaryCoreDataUITests */,
@@ -125,6 +128,8 @@
 				882936271C818DA60099FEA8 /* CoreDataStack.m */,
 				882935F61C818D020099FEA8 /* ViewController.h */,
 				882935F71C818D020099FEA8 /* ViewController.m */,
+				882936321C8192F90099FEA8 /* TableViewController.h */,
+				882936331C8192F90099FEA8 /* TableViewController.m */,
 				882936291C818E700099FEA8 /* NewEntryViewController.h */,
 				8829362A1C818E700099FEA8 /* NewEntryViewController.m */,
 				882935F91C818D020099FEA8 /* Main.storyboard */,
@@ -296,11 +301,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				882936391C8197FE0099FEA8 /* DiaryEntry+CoreDataProperties.m in Sources */,
 				882936281C818DA60099FEA8 /* CoreDataStack.m in Sources */,
-				882936301C818FBF0099FEA8 /* DiaryEntry+CoreDataProperties.m in Sources */,
-				882936311C818FBF0099FEA8 /* DiaryEntry.m in Sources */,
 				882935F81C818D020099FEA8 /* ViewController.m in Sources */,
+				882936341C8192F90099FEA8 /* TableViewController.m in Sources */,
 				8829362B1C818E700099FEA8 /* NewEntryViewController.m in Sources */,
+				8829363A1C8197FE0099FEA8 /* DiaryEntry.m in Sources */,
 				882935F51C818D020099FEA8 /* AppDelegate.m in Sources */,
 				882935FE1C818D020099FEA8 /* DiaryCoreData.xcdatamodeld in Sources */,
 				882935F21C818D020099FEA8 /* main.m in Sources */,

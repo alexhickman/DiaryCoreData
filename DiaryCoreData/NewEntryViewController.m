@@ -7,6 +7,8 @@
 //
 
 #import "NewEntryViewController.h"
+#import "CoreDataStack.h"
+#import "DiaryEntry+CoreDataProperties.h"
 
 @interface NewEntryViewController ()
 
@@ -19,16 +21,33 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[self navigationController] setNavigationBarHidden:NO animated:NO];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)cancelWasPressed:(id)sender {
+- (void) insertDiaryEntry
+{
+    CoreDataStack *coreDataStack = [CoreDataStack defaultStack];
+    DiaryEntry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"DiaryEntry" inManagedObjectContext:coreDataStack.managedObjectContext];
+    entry.body = self.textField.text;
+    entry.date = [[NSDate date] timeIntervalSince1970];
+    [coreDataStack saveContext];
+}
+
+- (IBAction)cancelWasPressed:(id)sender
+{
     [self dismissSelf];
 }
 
-- (IBAction)doneWasPressed:(id)sender {
+- (IBAction)doneWasPressed:(id)sender
+{
+    [self insertDiaryEntry];
     [self dismissSelf];
 }
 

@@ -13,13 +13,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_ENUM(int16_t, DiaryEntryMood)
-{
-    DiaryEntryMoodGood = 0,
-    DiaryEntryMoodAverage = 1,
-    DiaryEntryMoodBad = 2
-};
-
 @interface DiaryEntry (CoreDataProperties)
 
 @property (nonatomic) NSTimeInterval date;
@@ -27,6 +20,8 @@ NS_ENUM(int16_t, DiaryEntryMood)
 @property (nullable, nonatomic, retain) NSData *image;
 @property (nullable, nonatomic, retain) NSString *location;
 @property (nonatomic) int16_t mood;
+
+@property (nonatomic, readonly) NSString *sectionName;
 
 @end
 
