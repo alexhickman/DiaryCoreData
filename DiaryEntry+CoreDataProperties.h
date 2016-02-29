@@ -21,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *location;
 @property (nonatomic) int16_t mood;
 
-@property (nonatomic, readonly) NSString *sectionName;
-
 @end
 
 NS_ASSUME_NONNULL_END

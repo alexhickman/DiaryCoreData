@@ -19,13 +19,4 @@
 @dynamic location;
 @dynamic mood;
 
-- (NSString *)sectionName
-{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMM yyyy"];
-    
-    return [dateFormatter stringFromDate:date];
-}
-
 @end
