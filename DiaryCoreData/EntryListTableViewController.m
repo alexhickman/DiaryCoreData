@@ -6,17 +6,19 @@
 //  Copyright © 2016 Hickman. All rights reserved.
 //
 
-#import "TableViewController.h"
+#import "EntryListTableViewController.h"
 #import "CoreDataStack.h"
-#import "DiaryEntry+CoreDataProperties.h"
+#import "DiaryEntry.h"
+#import "EntryViewController.h"
+#import "EntryTableViewCell.h"
 
-@interface TableViewController () <NSFetchedResultsControllerDelegate>
+@interface EntryListTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
-@implementation TableViewController
+@implementation EntryListTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,10 +61,47 @@
     return _fetchedResultsController;
 }
 
+-(void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+    
+}
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        default:
+            break;
+    }
+}
+
+-(void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.tableView reloadData];
+    [self.tableView endUpdates];
 }
+
 
 #pragma mark - Table view data source
 
@@ -78,10 +117,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    EntryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     DiaryEntry *entry = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = entry.body;
+    [cell configureCellForEntry:entry];
     
     return cell;
 }
@@ -92,48 +131,41 @@
     return [sectionInfo name];
 }
 
-/*
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+       // [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        DiaryEntry *entry = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        CoreDataStack *coreDataStack = [CoreDataStack defaultStack];
+        [[coreDataStack managedObjectContext] deleteObject:entry];
+        [coreDataStack saveContext];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DiaryEntry *entry = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    return [EntryTableViewCell heightForEntry:entry];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+    if ([segue.identifier isEqualToString:@"edit"]) {
+        UITableViewCell *cell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        UINavigationController *navigationController = segue.destinationViewController;
+        EntryViewController *entryViewController = (EntryViewController *) navigationController.topViewController;
+        entryViewController.entry = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    }}
+
 
 @end

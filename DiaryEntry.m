@@ -8,6 +8,7 @@
 
 #import "DiaryEntry.h"
 
+
 @implementation DiaryEntry
 
 // Insert code here to add functionality to your managed object subclass
